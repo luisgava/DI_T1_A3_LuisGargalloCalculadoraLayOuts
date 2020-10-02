@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Toolkit;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class CalculadoraGridApp extends JFrame {
 
@@ -40,6 +42,7 @@ public class CalculadoraGridApp extends JFrame {
 	 * Create the frame.
 	 */
 	public CalculadoraGridApp() {
+		String num1 = null;
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src\\img\\calculadora.png"));
 		setResizable(false);
@@ -56,19 +59,33 @@ public class CalculadoraGridApp extends JFrame {
 		btnResultado.setBackground(new Color(245, 222, 179));
 		contentPane.add(btnResultado);
 		
+		// Label para dejar espacio blanco en el grid
 		JLabel lblBlanca1 = new JLabel("");
 		contentPane.add(lblBlanca1);
 		
 		textField = new JTextField();
 		textField.setBackground(Color.WHITE);
-		textField.setEditable(false);
+		textField.setEditable(false);		
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblBlanca1_1 = new JLabel("");
-		contentPane.add(lblBlanca1_1);
+		// Label para dejar espacio blanco en el grid
+		JLabel lblBlanca2 = new JLabel("");
+		contentPane.add(lblBlanca2);
 		
 		JButton btn7 = new JButton("7");
+		btn7.addMouseListener(new MouseAdapter() {
+			
+			public void mouseClicked(MouseEvent e) {num1.concat("7");
+				ponerNumero(num1);
+			}
+		});
+
+			private void ponerNumero(String num1) {
+				textField.setText(num1);
+				
+			}
+		});
 		btn7.setBackground(new Color(250, 128, 114));
 		contentPane.add(btn7);
 		
@@ -131,6 +148,8 @@ public class CalculadoraGridApp extends JFrame {
 		JButton btnDivision = new JButton("/");
 		btnDivision.setBackground(new Color(189, 183, 107));
 		contentPane.add(btnDivision);
+		
+		
 	}
 
 }
