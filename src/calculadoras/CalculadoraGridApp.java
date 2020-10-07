@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Toolkit;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class CalculadoraGridApp extends JFrame {
 
@@ -94,10 +95,10 @@ public class CalculadoraGridApp extends JFrame {
 		btnResultado.setBackground(new Color(245, 222, 179));
 		contentPane.add(btnResultado);
 
-		// Label para dejar espacio blanco en el grid
-		JLabel lblBlanca1 = new JLabel("");
-		contentPane.add(lblBlanca1);
-
+		// Label imagen
+		lblOperacion = new JLabel("");
+		contentPane.add(lblOperacion);
+		
 		// TextField para los números y el resultado
 		textField = new JTextField();
 		textField.setBackground(Color.WHITE);
@@ -105,9 +106,11 @@ public class CalculadoraGridApp extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 
-		// Label operación
-		lblOperacion = new JLabel("");
-		contentPane.add(lblOperacion);
+		// Label para dejar espacio blanco en el grid
+		JLabel lblImg = new JLabel("");
+		lblImg.setIcon(new ImageIcon("src\\img\\calculadora.png"));
+		contentPane.add(lblImg);
+
 
 		// Botón 7
 		btn7 = new JButton("7");

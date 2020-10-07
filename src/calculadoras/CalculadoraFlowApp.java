@@ -74,9 +74,9 @@ public class CalculadoraFlowApp extends JFrame {
 		// Frame
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src\\img\\calculadora.png"));
 		setResizable(true);
-		setTitle("Calculadora Grid");
+		setTitle("Calculadora Flow");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 240, 310);
+		setBounds(100, 100, 270, 260);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 245, 245));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -91,9 +91,9 @@ public class CalculadoraFlowApp extends JFrame {
 		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		// Label para dejar espacio blanco en el grid
-		JLabel lblBlanca1 = new JLabel("");
-		lblBlanca1.setIcon(new ImageIcon("img\\Calculator-icon.png"));
-		contentPane.add(lblBlanca1);
+		JLabel lblImg = new JLabel("");
+		lblImg.setIcon(new ImageIcon("src\\img\\calculadora.png"));
+		contentPane.add(lblImg);
 
 		// TextField para los números y el resultado
 		textField = new JTextField();
