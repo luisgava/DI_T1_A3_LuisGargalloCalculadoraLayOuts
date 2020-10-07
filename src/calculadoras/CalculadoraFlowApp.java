@@ -81,6 +81,7 @@ public class CalculadoraFlowApp extends JFrame {
 		contentPane.setBackground(new Color(245, 245, 245));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		// Listeners
 		ListenerBotonNumerico listenerBotonNumerico = new ListenerBotonNumerico();
@@ -88,7 +89,6 @@ public class CalculadoraFlowApp extends JFrame {
 		ListenerBotonIgual listenerBotonIgual = new ListenerBotonIgual();
 		ListenerBotonComa listenerBotonComa = new ListenerBotonComa();
 		ListenerBotonClear listenerBotonClear = new ListenerBotonClear();
-		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		// Label para dejar espacio blanco en el grid
 		JLabel lblImg = new JLabel("");
@@ -165,7 +165,7 @@ public class CalculadoraFlowApp extends JFrame {
 		btn0.addActionListener(listenerBotonNumerico);
 		btn0.setBackground(new Color(250, 128, 114));
 		contentPane.add(btn0);
-		
+
 		// Botón .
 		btnComa = new JButton(".");
 		btnComa.addActionListener(listenerBotonComa);
@@ -195,7 +195,7 @@ public class CalculadoraFlowApp extends JFrame {
 		btnDivision.addActionListener(listenerBotonOperacion);
 		btnDivision.setBackground(new Color(189, 183, 107));
 		contentPane.add(btnDivision);
-		
+
 		// Botón C
 		btnClear = new JButton("C");
 		btnClear.addActionListener(listenerBotonClear);
