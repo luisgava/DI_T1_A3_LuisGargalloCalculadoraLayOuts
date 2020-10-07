@@ -14,6 +14,8 @@ import java.awt.Toolkit;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import javax.swing.ImageIcon;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class CalculadoraAbsoluteApp extends JFrame {
 
@@ -69,15 +71,14 @@ public class CalculadoraAbsoluteApp extends JFrame {
 
 		// Frame
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src\\img\\calculadora.png"));
-		setResizable(true);
+		setResizable(false);
 		setTitle("Calculadora Flow");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 270, 260);
+		setBounds(100, 100, 295, 385);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(245, 245, 245));
+		contentPane.setBackground(new Color(245, 245, 220));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		// Listeners
 		ListenerBotonNumerico listenerBotonNumerico = new ListenerBotonNumerico();
@@ -85,14 +86,11 @@ public class CalculadoraAbsoluteApp extends JFrame {
 		ListenerBotonIgual listenerBotonIgual = new ListenerBotonIgual();
 		ListenerBotonComa listenerBotonComa = new ListenerBotonComa();
 		ListenerBotonClear listenerBotonClear = new ListenerBotonClear();
-
-		// Label para dejar espacio blanco en el grid
-		JLabel lblImg = new JLabel("");
-		lblImg.setIcon(new ImageIcon("src\\img\\calculadora.png"));
-		contentPane.add(lblImg);
+		contentPane.setLayout(null);
 
 		// TextField para los números y el resultado
 		textField = new JTextField();
+		textField.setBounds(130, 25, 139, 29);
 		textField.setBackground(Color.WHITE);
 		textField.setEditable(false);
 		textField.setColumns(15);
@@ -100,106 +98,124 @@ public class CalculadoraAbsoluteApp extends JFrame {
 
 		// Label operación
 		lblOperacion = new JLabel("   ");
+		lblOperacion.setBounds(70, 14, 50, 50);
 		contentPane.add(lblOperacion);
 
 		// Botón 1
 		btn1 = new JButton("1");
+		btn1.setBounds(10, 197, 50, 50);
 		btn1.addActionListener(listenerBotonNumerico);
 		btn1.setBackground(new Color(250, 128, 114));
 		contentPane.add(btn1);
 
 		// Botón 2
 		btn2 = new JButton("2");
+		btn2.setBounds(70, 197, 50, 50);
 		btn2.addActionListener(listenerBotonNumerico);
 		btn2.setBackground(new Color(250, 128, 114));
 		contentPane.add(btn2);
 
 		// Botón 3
 		btn3 = new JButton("3");
+		btn3.setBounds(130, 197, 50, 50);
 		btn3.addActionListener(listenerBotonNumerico);
 		btn3.setBackground(new Color(250, 128, 114));
 		contentPane.add(btn3);
 
 		// Botón 4
 		btn4 = new JButton("4");
+		btn4.setBounds(10, 136, 50, 50);
 		btn4.addActionListener(listenerBotonNumerico);
 		btn4.setBackground(new Color(250, 128, 114));
 		contentPane.add(btn4);
 
 		// Botón 5
 		btn5 = new JButton("5");
+		btn5.setBounds(70, 136, 50, 50);
 		btn5.addActionListener(listenerBotonNumerico);
 		btn5.setBackground(new Color(250, 128, 114));
 		contentPane.add(btn5);
 
 		// Botón 6
 		btn6 = new JButton("6");
+		btn6.setBounds(130, 136, 50, 50);
 		btn6.addActionListener(listenerBotonNumerico);
 		btn6.setBackground(new Color(250, 128, 114));
 		contentPane.add(btn6);
 
 		// Botón 7
 		btn7 = new JButton("7");
+		btn7.setBounds(10, 75, 50, 50);
 		btn7.addActionListener(listenerBotonNumerico);
 		btn7.setBackground(new Color(250, 128, 114));
 		contentPane.add(btn7);
 
 		// Botón 8
 		btn8 = new JButton("8");
+		btn8.setBounds(70, 75, 50, 50);
 		btn8.addActionListener(listenerBotonNumerico);
 		btn8.setBackground(new Color(250, 128, 114));
 		contentPane.add(btn8);
 
 		// Botón 9
 		btn9 = new JButton("9");
+		btn9.setBounds(130, 75, 50, 50);
 		btn9.addActionListener(listenerBotonNumerico);
 		btn9.setBackground(new Color(250, 128, 114));
 		contentPane.add(btn9);
 
 		// Botón 0
 		JButton btn0 = new JButton("0");
+		btn0.setBounds(70, 258, 50, 50);
 		btn0.addActionListener(listenerBotonNumerico);
 		btn0.setBackground(new Color(250, 128, 114));
 		contentPane.add(btn0);
 
 		// Botón .
 		btnComa = new JButton(".");
+		btnComa.setBounds(10, 258, 50, 50);
 		btnComa.addActionListener(listenerBotonComa);
 		btnComa.setBackground(new Color(240, 230, 140));
 		contentPane.add(btnComa);
 
 		// Botón +
 		btnSuma = new JButton("+");
+		btnSuma.setBounds(219, 75, 50, 50);
 		btnSuma.addActionListener(listenerBotonOperacion);
 		btnSuma.setBackground(new Color(189, 183, 107));
 		contentPane.add(btnSuma);
 
 		// Botón -
 		btnResta = new JButton("-");
+		btnResta.setBounds(219, 136, 50, 50);
 		btnResta.addActionListener(listenerBotonOperacion);
 		btnResta.setBackground(new Color(189, 183, 107));
 		contentPane.add(btnResta);
 
 		// Botón X
 		btnMultiplicacion = new JButton("X");
+		btnMultiplicacion.setBounds(219, 197, 50, 50);
 		btnMultiplicacion.addActionListener(listenerBotonOperacion);
 		btnMultiplicacion.setBackground(new Color(189, 183, 107));
 		contentPane.add(btnMultiplicacion);
 
 		// Botón /
 		btnDivision = new JButton("/");
+		btnDivision.setBounds(219, 258, 50, 50);
 		btnDivision.addActionListener(listenerBotonOperacion);
 		btnDivision.setBackground(new Color(189, 183, 107));
 		contentPane.add(btnDivision);
 
 		// Botón C
 		btnClear = new JButton("C");
+		btnClear.setBounds(10, 14, 50, 50);
 		btnClear.addActionListener(listenerBotonClear);
 		btnClear.setBackground(new Color(240, 230, 140));
 		contentPane.add(btnClear);
 
 		// Botón =
 		btnResultado = new JButton("=");
+		btnResultado.setBounds(130, 258, 50, 50);
 		btnResultado.addActionListener(listenerBotonIgual);
 		btnResultado.setBackground(new Color(245, 222, 179));
 		contentPane.add(btnResultado);
@@ -220,7 +236,7 @@ public class CalculadoraAbsoluteApp extends JFrame {
 	 * Clase para crear los listener de los botones de operaciones.
 	 */
 	private class ListenerBotonOperacion implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent e) {			
 			num1 = textField.getText();
 			textField.setText("");
 			operacion = ((AbstractButton) e.getSource()).getText();
@@ -266,7 +282,7 @@ public class CalculadoraAbsoluteApp extends JFrame {
 	}
 
 	/**
-	 * Clase para crear el listener del botón .
+	 * Clase para crear el listener del botón.
 	 */
 	private class ListenerBotonComa implements ActionListener {
 		public void actionPerformed(ActionEvent e) {

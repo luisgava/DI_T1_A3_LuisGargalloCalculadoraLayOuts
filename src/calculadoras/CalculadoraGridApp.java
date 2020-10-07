@@ -69,6 +69,7 @@ public class CalculadoraGridApp extends JFrame {
 	 * Clase para crear el frame
 	 */
 	public CalculadoraGridApp() {
+		setBackground(new Color(245, 245, 220));
 
 		// Frame
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src\\img\\calculadora.png"));
@@ -77,7 +78,7 @@ public class CalculadoraGridApp extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 241, 330);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(245, 245, 245));
+		contentPane.setBackground(new Color(245, 245, 220));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(5, 4, 5, 5));
