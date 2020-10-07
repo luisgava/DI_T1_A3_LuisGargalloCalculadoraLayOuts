@@ -12,10 +12,6 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Toolkit;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import javax.swing.ImageIcon;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
 
 public class CalculadoraAbsoluteApp extends JFrame {
 
@@ -72,9 +68,9 @@ public class CalculadoraAbsoluteApp extends JFrame {
 		// Frame
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src\\img\\calculadora.png"));
 		setResizable(false);
-		setTitle("Calculadora Flow");
+		setTitle("Calculadora Absolute");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 295, 385);
+		setBounds(100, 100, 311, 372);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 245, 220));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
