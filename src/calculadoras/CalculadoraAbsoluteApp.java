@@ -79,8 +79,9 @@ public class CalculadoraAbsoluteApp extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 245, 245));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setContentPane(contentPane);
+		
 
 		// Listeners
 		ListenerBotonNumerico listenerBotonNumerico = new ListenerBotonNumerico();
