@@ -24,7 +24,8 @@ public class CalculadoraGridApp extends JFrame {
 	private JTextField textField;
 	private String num1 = "0";
 	private String num2 = "0";
-	private String operacion;
+	private String operacion = "";
+	private JLabel lblOperacion;
 
 	private JButton btn7;
 	private JButton btn8;
@@ -45,8 +46,6 @@ public class CalculadoraGridApp extends JFrame {
 	private JButton btnMultiplicacion;
 	private JButton btnDivision;
 	private JButton btnResultado;
-
-	private JLabel lblOperacion;
 
 	/**
 	 * Launch the application.
@@ -74,7 +73,7 @@ public class CalculadoraGridApp extends JFrame {
 		// Frame
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src\\img\\calculadora.png"));
 		setResizable(true);
-		setTitle("Calculadora Grid");		
+		setTitle("Calculadora Grid");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 241, 330);
 		contentPane = new JPanel();
@@ -92,14 +91,15 @@ public class CalculadoraGridApp extends JFrame {
 
 		// Botón =
 		btnResultado = new JButton("=");
-		btnResultado.addActionListener(listenerBotonIgual);		
+		btnResultado.addActionListener(listenerBotonIgual);
 		btnResultado.setBackground(new Color(245, 222, 179));
+		btnResultado.setEnabled(false);
 		contentPane.add(btnResultado);
 
 		// Label imagen
 		lblOperacion = new JLabel("");
 		contentPane.add(lblOperacion);
-		
+
 		// TextField para los números y el resultado
 		textField = new JTextField();
 		textField.setBackground(Color.WHITE);
@@ -111,7 +111,6 @@ public class CalculadoraGridApp extends JFrame {
 		JLabel lblImg = new JLabel("");
 		lblImg.setIcon(new ImageIcon("src\\img\\calculadora.png"));
 		contentPane.add(lblImg);
-
 
 		// Botón 7
 		btn7 = new JButton("7");
@@ -135,6 +134,7 @@ public class CalculadoraGridApp extends JFrame {
 		btnSuma = new JButton("+");
 		btnSuma.addActionListener(listenerBotonOperacion);
 		btnSuma.setBackground(new Color(189, 183, 107));
+		btnSuma.setEnabled(false);
 		contentPane.add(btnSuma);
 
 		// Botón 4
@@ -159,6 +159,7 @@ public class CalculadoraGridApp extends JFrame {
 		btnResta = new JButton("-");
 		btnResta.addActionListener(listenerBotonOperacion);
 		btnResta.setBackground(new Color(189, 183, 107));
+		btnResta.setEnabled(false);
 		contentPane.add(btnResta);
 
 		// Botón 1
@@ -183,6 +184,7 @@ public class CalculadoraGridApp extends JFrame {
 		btnMultiplicacion = new JButton("X");
 		btnMultiplicacion.addActionListener(listenerBotonOperacion);
 		btnMultiplicacion.setBackground(new Color(189, 183, 107));
+		btnMultiplicacion.setEnabled(false);
 		contentPane.add(btnMultiplicacion);
 
 		// Botón C
@@ -207,6 +209,7 @@ public class CalculadoraGridApp extends JFrame {
 		btnDivision = new JButton("/");
 		btnDivision.addActionListener(listenerBotonOperacion);
 		btnDivision.setBackground(new Color(189, 183, 107));
+		btnDivision.setEnabled(false);
 		contentPane.add(btnDivision);
 
 	}
@@ -218,6 +221,12 @@ public class CalculadoraGridApp extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			String valor = ((AbstractButton) e.getSource()).getText();
 			textField.setText(textField.getText() + valor);
+			if (operacion.equals("")) {
+				btnSuma.setEnabled(true);
+				btnResta.setEnabled(true);
+				btnMultiplicacion.setEnabled(true);
+				btnDivision.setEnabled(true);
+			}
 		}
 	}
 
@@ -234,6 +243,7 @@ public class CalculadoraGridApp extends JFrame {
 			btnResta.setEnabled(false);
 			btnMultiplicacion.setEnabled(false);
 			btnDivision.setEnabled(false);
+			btnResultado.setEnabled(true);
 		}
 	}
 
@@ -271,12 +281,15 @@ public class CalculadoraGridApp extends JFrame {
 	}
 
 	/**
-	 * Clase para crear el listener del botón .
+	 * Clase para crear el listener del botón. Sólo funciona si hay algún numero en
+	 * el textField
 	 */
 	private class ListenerBotonComa implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (!textField.getText().contains(".")) {
-				textField.setText(textField.getText() + ((AbstractButton) e.getSource()).getText());
+			if (!textField.getText().equals("")) {
+				if (!textField.getText().contains(".")) {
+					textField.setText(textField.getText() + ((AbstractButton) e.getSource()).getText());
+				}
 			}
 		}
 	}

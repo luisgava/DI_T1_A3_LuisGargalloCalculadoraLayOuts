@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Toolkit;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class CalculadoraAbsoluteApp extends JFrame {
 
@@ -19,7 +20,8 @@ public class CalculadoraAbsoluteApp extends JFrame {
 	private JTextField textField;
 	private String num1 = "0";
 	private String num2 = "0";
-	private String operacion;
+	private String operacion = "";
+	private JLabel lblOperacion;
 
 	private JButton btn7;
 	private JButton btn8;
@@ -40,8 +42,6 @@ public class CalculadoraAbsoluteApp extends JFrame {
 	private JButton btnMultiplicacion;
 	private JButton btnDivision;
 	private JButton btnResultado;
-
-	private JLabel lblOperacion;
 
 	/**
 	 * Launch the application.
@@ -75,7 +75,7 @@ public class CalculadoraAbsoluteApp extends JFrame {
 		contentPane.setBackground(new Color(245, 245, 220));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+
 		// Listeners
 		ListenerBotonNumerico listenerBotonNumerico = new ListenerBotonNumerico();
 		ListenerBotonOperacion listenerBotonOperacion = new ListenerBotonOperacion();
@@ -86,14 +86,14 @@ public class CalculadoraAbsoluteApp extends JFrame {
 
 		// TextField para los números y el resultado
 		textField = new JTextField();
-		textField.setBounds(130, 25, 139, 29);
+		textField.setBounds(112, 14, 68, 50);
 		textField.setBackground(Color.WHITE);
 		textField.setEditable(false);
 		textField.setColumns(15);
 		contentPane.add(textField);
 
 		// Label operación
-		lblOperacion = new JLabel("   ");
+		lblOperacion = new JLabel(operacion);
 		lblOperacion.setBounds(70, 14, 50, 50);
 		contentPane.add(lblOperacion);
 
@@ -179,6 +179,7 @@ public class CalculadoraAbsoluteApp extends JFrame {
 		btnSuma.setBounds(219, 75, 50, 50);
 		btnSuma.addActionListener(listenerBotonOperacion);
 		btnSuma.setBackground(new Color(189, 183, 107));
+		btnSuma.setEnabled(false);
 		contentPane.add(btnSuma);
 
 		// Botón -
@@ -186,6 +187,7 @@ public class CalculadoraAbsoluteApp extends JFrame {
 		btnResta.setBounds(219, 136, 50, 50);
 		btnResta.addActionListener(listenerBotonOperacion);
 		btnResta.setBackground(new Color(189, 183, 107));
+		btnResta.setEnabled(false);
 		contentPane.add(btnResta);
 
 		// Botón X
@@ -193,6 +195,7 @@ public class CalculadoraAbsoluteApp extends JFrame {
 		btnMultiplicacion.setBounds(219, 197, 50, 50);
 		btnMultiplicacion.addActionListener(listenerBotonOperacion);
 		btnMultiplicacion.setBackground(new Color(189, 183, 107));
+		btnMultiplicacion.setEnabled(false);
 		contentPane.add(btnMultiplicacion);
 
 		// Botón /
@@ -200,6 +203,7 @@ public class CalculadoraAbsoluteApp extends JFrame {
 		btnDivision.setBounds(219, 258, 50, 50);
 		btnDivision.addActionListener(listenerBotonOperacion);
 		btnDivision.setBackground(new Color(189, 183, 107));
+		btnDivision.setEnabled(false);
 		contentPane.add(btnDivision);
 
 		// Botón C
@@ -214,7 +218,13 @@ public class CalculadoraAbsoluteApp extends JFrame {
 		btnResultado.setBounds(130, 258, 50, 50);
 		btnResultado.addActionListener(listenerBotonIgual);
 		btnResultado.setBackground(new Color(245, 222, 179));
+		btnResultado.setEnabled(false);
 		contentPane.add(btnResultado);
+		
+		JLabel lblNewLabel = new JLabel("lblImg");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\alu01-dam2\\eclipse-workspace\\DI_T1_A3_LuisGargalloCalculadoraLayOuts\\src\\img\\calculadora.png"));
+		lblNewLabel.setBounds(223, 14, 46, 50);
+		contentPane.add(lblNewLabel);
 
 	}
 
@@ -225,6 +235,12 @@ public class CalculadoraAbsoluteApp extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			String valor = ((AbstractButton) e.getSource()).getText();
 			textField.setText(textField.getText() + valor);
+			if(operacion.equals("")) {
+				btnSuma.setEnabled(true);
+				btnResta.setEnabled(true);
+				btnMultiplicacion.setEnabled(true);
+				btnDivision.setEnabled(true);
+			}
 		}
 	}
 
@@ -232,7 +248,7 @@ public class CalculadoraAbsoluteApp extends JFrame {
 	 * Clase para crear los listener de los botones de operaciones.
 	 */
 	private class ListenerBotonOperacion implements ActionListener {
-		public void actionPerformed(ActionEvent e) {			
+		public void actionPerformed(ActionEvent e) {
 			num1 = textField.getText();
 			textField.setText("");
 			operacion = ((AbstractButton) e.getSource()).getText();
@@ -241,6 +257,7 @@ public class CalculadoraAbsoluteApp extends JFrame {
 			btnResta.setEnabled(false);
 			btnMultiplicacion.setEnabled(false);
 			btnDivision.setEnabled(false);
+			btnResultado.setEnabled(true);
 		}
 	}
 
@@ -266,6 +283,8 @@ public class CalculadoraAbsoluteApp extends JFrame {
 				case "/":
 					resultado = (Double.parseDouble(num1) / Double.parseDouble(num2));
 					break;
+				case "":
+					resultado = (Double.parseDouble(num1));
 
 				default:
 					break;
@@ -278,12 +297,15 @@ public class CalculadoraAbsoluteApp extends JFrame {
 	}
 
 	/**
-	 * Clase para crear el listener del botón.
+	 * Clase para crear el listener del botón. Sólo funciona si hay algún numero en
+	 * el textField
 	 */
 	private class ListenerBotonComa implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (!textField.getText().contains(".")) {
-				textField.setText(textField.getText() + ((AbstractButton) e.getSource()).getText());
+			if (!textField.getText().equals("")) {
+				if (!textField.getText().contains(".")) {
+					textField.setText(textField.getText() + ((AbstractButton) e.getSource()).getText());
+				}
 			}
 		}
 	}

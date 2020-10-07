@@ -25,7 +25,8 @@ public class CalculadoraFlowApp extends JFrame {
 	private JTextField textField;
 	private String num1 = "0";
 	private String num2 = "0";
-	private String operacion;
+	private String operacion = "";
+	private JLabel lblOperacion;
 
 	private JButton btn7;
 	private JButton btn8;
@@ -46,8 +47,6 @@ public class CalculadoraFlowApp extends JFrame {
 	private JButton btnMultiplicacion;
 	private JButton btnDivision;
 	private JButton btnResultado;
-
-	private JLabel lblOperacion;
 
 	/**
 	 * Launch the application.
@@ -174,26 +173,34 @@ public class CalculadoraFlowApp extends JFrame {
 
 		// Botón +
 		btnSuma = new JButton("+");
+		btnSuma.setBounds(219, 75, 50, 50);
 		btnSuma.addActionListener(listenerBotonOperacion);
 		btnSuma.setBackground(new Color(189, 183, 107));
+		btnSuma.setEnabled(false);
 		contentPane.add(btnSuma);
 
 		// Botón -
 		btnResta = new JButton("-");
+		btnResta.setBounds(219, 136, 50, 50);
 		btnResta.addActionListener(listenerBotonOperacion);
 		btnResta.setBackground(new Color(189, 183, 107));
+		btnResta.setEnabled(false);
 		contentPane.add(btnResta);
 
 		// Botón X
 		btnMultiplicacion = new JButton("X");
+		btnMultiplicacion.setBounds(219, 197, 50, 50);
 		btnMultiplicacion.addActionListener(listenerBotonOperacion);
 		btnMultiplicacion.setBackground(new Color(189, 183, 107));
+		btnMultiplicacion.setEnabled(false);
 		contentPane.add(btnMultiplicacion);
 
 		// Botón /
 		btnDivision = new JButton("/");
+		btnDivision.setBounds(219, 258, 50, 50);
 		btnDivision.addActionListener(listenerBotonOperacion);
 		btnDivision.setBackground(new Color(189, 183, 107));
+		btnDivision.setEnabled(false);
 		contentPane.add(btnDivision);
 
 		// Botón C
@@ -206,6 +213,7 @@ public class CalculadoraFlowApp extends JFrame {
 		btnResultado = new JButton("=");
 		btnResultado.addActionListener(listenerBotonIgual);
 		btnResultado.setBackground(new Color(245, 222, 179));
+		btnResultado.setEnabled(false);
 		contentPane.add(btnResultado);
 
 	}
@@ -217,6 +225,12 @@ public class CalculadoraFlowApp extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			String valor = ((AbstractButton) e.getSource()).getText();
 			textField.setText(textField.getText() + valor);
+			if(operacion.equals("")) {
+				btnSuma.setEnabled(true);
+				btnResta.setEnabled(true);
+				btnMultiplicacion.setEnabled(true);
+				btnDivision.setEnabled(true);
+			}
 		}
 	}
 
@@ -233,6 +247,7 @@ public class CalculadoraFlowApp extends JFrame {
 			btnResta.setEnabled(false);
 			btnMultiplicacion.setEnabled(false);
 			btnDivision.setEnabled(false);
+			btnResultado.setEnabled(true);
 		}
 	}
 
@@ -270,12 +285,15 @@ public class CalculadoraFlowApp extends JFrame {
 	}
 
 	/**
-	 * Clase para crear el listener del botón .
+	 * Clase para crear el listener del botón. Sólo funciona si hay algún numero en
+	 * el textField
 	 */
 	private class ListenerBotonComa implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (!textField.getText().contains(".")) {
-				textField.setText(textField.getText() + ((AbstractButton) e.getSource()).getText());
+			if (!textField.getText().equals("")) {
+				if (!textField.getText().contains(".")) {
+					textField.setText(textField.getText() + ((AbstractButton) e.getSource()).getText());
+				}
 			}
 		}
 	}
